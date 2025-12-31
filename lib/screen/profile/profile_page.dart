@@ -8,7 +8,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int _selectedIndex = 3; // Profile is selected
+  int _selectedIndex = 3; // Profile is selected  check 1
 
   @override
   Widget build(BuildContext context) {
