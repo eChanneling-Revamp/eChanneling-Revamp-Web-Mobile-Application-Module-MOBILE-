@@ -11,12 +11,11 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   String? selectedNationality = 'Sri Lankan';
-  final TextEditingController _phoneController = TextEditingController();
-  final String countryCode = '+94';
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   void dispose() {
-    _phoneController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -125,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                     const Center(
                       child: Text(
-                        'Select your nationality and enter your mobile number or email',
+                        'Select your nationality and enter your email address',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
@@ -180,9 +179,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
                     const SizedBox(height: 24),
 
-                    // Phone Number Label
+                    // Email Address Label
                     const Text(
-                      'Phone Number *',
+                      'Email Address *',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.black87,
@@ -192,56 +191,38 @@ class _SignUpPageState extends State<SignUpPage> {
 
                     const SizedBox(height: 8),
 
-                    // Phone Number Input
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 2),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 12,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade50,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                bottomLeft: Radius.circular(30),
-                              ),
-                              border: Border(
-                                right: BorderSide(color: Colors.grey.shade300),
-                              ),
-                            ),
-                            child: Text(
-                              countryCode,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                color: Colors.black87,
-                              ),
-                            ),
+                    // Email Address Input
+                    TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: 'Ex: user@example.com',
+                        hintStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 15,
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.email_outlined,
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(
+                            color: Colors.grey,
+                            width: 2,
                           ),
-                          Expanded(
-                            child: TextField(
-                              controller: _phoneController,
-                              keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
-                                hintText: 'Ex: 711234567',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                ),
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 12,
-                                ),
-                              ),
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: const BorderSide(
+                            color: Colors.grey,
+                            width: 2,
                           ),
-                        ],
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
                       ),
                     ),
 
@@ -256,7 +237,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(builder: (context) => const SignInPage()),
-                                (Route<dynamic> route) => false,
+                                    (Route<dynamic> route) => false,
                               );
                             },
                             style: OutlinedButton.styleFrom(
