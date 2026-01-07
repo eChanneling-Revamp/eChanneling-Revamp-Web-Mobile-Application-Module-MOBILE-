@@ -27,7 +27,7 @@ class _SignUpPage3State extends State<SignUpPage3> {
       context: context,
       barrierDismissible: true,
       builder: (_) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), // Blur background
+        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
@@ -114,185 +114,245 @@ class _SignUpPage3State extends State<SignUpPage3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SizedBox(height: 60),
-                      Center(
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                          width: 80,
-                          height: 80,
-                        ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF93C5FD), Color(0xFFF9FAFB)],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 500),
+                margin: const EdgeInsets.only(top: 24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Image
+                    Center(
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 200,
+                        height: 200,
+                        fit: BoxFit.contain,
                       ),
-                      const SizedBox(height: 8),
-                      const Center(
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Center(
-                        child: Text(
-                          'Hello there! Let\'s create your account.',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
+                    ),
+                    const SizedBox(height: 24),
 
-                      // Step indicator
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildStepIndicator(1, true),
-                          _buildStepLine(),
-                          _buildStepIndicator(2, true),
-                          _buildStepLine(),
-                          _buildStepIndicator(3, true),
-                          _buildStepLine(),
-                          _buildStepIndicator(4, false),
-                          _buildStepLine(),
-                          _buildStepIndicator(5, false),
-                        ],
+                    // Sign Up Title
+                    const Center(
+                      child: Text(
+                        'SIGN UP',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
                       ),
-                      const SizedBox(height: 32),
+                    ),
 
-                      const Text(
+                    const SizedBox(height: 8),
+
+                    // Subtitle
+                    const Center(
+                      child: Text(
+                        'Hello there! Let\'s create your account.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
+
+                    // Step Indicator
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildStepIndicator(1, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(2, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(3, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(4, false),
+                        _buildStepLine(),
+                        _buildStepIndicator(5, false),
+                      ],
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Select Package Section
+                    const Center(
+                      child: Text(
                         'Select Package',
                         style: TextStyle(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black87,
                         ),
                       ),
-                      const SizedBox(height: 24),
+                    ),
 
-                      // Swipeable cards
-                      GestureDetector(
-                        onHorizontalDragUpdate: _onHorizontalDragUpdate,
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-                          transitionBuilder: (child, animation) {
-                            final offset = _showPremium
-                                ? const Offset(1.0, 0.0)
-                                : const Offset(-1.0, 0.0);
-                            return SlideTransition(
-                              position: Tween<Offset>(begin: offset, end: Offset.zero)
-                                  .animate(animation),
-                              child: child,
-                            );
-                          },
-                          child: _showPremium ? _buildPremiumCard() : _buildFreeCard(),
-                        ),
+                    const SizedBox(height: 24),
+
+                    // Swipeable cards
+                    GestureDetector(
+                      onHorizontalDragUpdate: _onHorizontalDragUpdate,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder: (child, animation) {
+                          final offset = _showPremium
+                              ? const Offset(1.0, 0.0)
+                              : const Offset(-1.0, 0.0);
+                          return SlideTransition(
+                            position: Tween<Offset>(begin: offset, end: Offset.zero)
+                                .animate(animation),
+                            child: child,
+                          );
+                        },
+                        child: _showPremium ? _buildPremiumCard() : _buildFreeCard(),
                       ),
-                      const SizedBox(height: 24),
+                    ),
 
-                      // Info icon
-                      Row(
-                        children: const [
-                          Icon(Icons.info, color: Color(0xFF0000CC), size: 16),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'To view more info regarding eChanneling membership and benefits',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF0000CC),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    const SizedBox(height: 24),
 
-                      // Membership Details link on its own line
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24.0, top: 4.0),
-                        child: InkWell(
-                          onTap: () => _showMembershipDetails(context),
-                          child: const Text(
-                            'Membership Details',
+                    // Info section
+                    Row(
+                      children: const [
+                        Icon(Icons.info, color: Color(0xFF0000CC), size: 16),
+                        SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            'To view more info regarding eChanneling membership and benefits',
                             style: TextStyle(
                               fontSize: 12,
                               color: Color(0xFF0000CC),
-                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ),
+                      ],
+                    ),
+
+                    // Membership Details link
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24.0, top: 4.0),
+                      child: InkWell(
+                        onTap: () => _showMembershipDetails(context),
+                        child: const Text(
+                          'Membership Details',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF0000CC),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 16),
-                    ],
-                  ),
+                    ),
+
+                    const SizedBox(height: 32),
+
+                    // Buttons Row
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (_) => const SignUpPage2()),
+                              );
+                            },
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.black87,
+                              side: const BorderSide(color: Colors.grey, width: 2),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: const Text(
+                              'Previous',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF3B82F6), Color(0xFF10B981)],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SignUpPage4(isPremium: _showPremium),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                shadowColor: Colors.transparent,
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              child: const Text(
+                                'Next',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
             ),
-
-            // Bottom navigation buttons
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (_) => const SignUpPage2()),
-                        );
-                      },
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.black87,
-                        side: const BorderSide(color: Colors.grey),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        fixedSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Previous', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => SignUpPage4(isPremium: _showPremium), // Pass the flag
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0000CC),
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        fixedSize: const Size.fromHeight(50),
-                        elevation: 0,
-                      ),
-                      child: const Text(
-                        'Next',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -335,7 +395,7 @@ class _SignUpPage3State extends State<SignUpPage3> {
     return Card(
       key: const ValueKey('freeCard'),
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -370,8 +430,10 @@ class _SignUpPage3State extends State<SignUpPage3> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.green, size: 16),
                 const SizedBox(width: 8),
-                const Text('Member loyalty point scheme',
-                    style: TextStyle(fontSize: 14, color: Colors.black87)),
+                const Expanded(
+                  child: Text('Member loyalty point scheme',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
+                ),
               ],
             ),
             const SizedBox(height: 4),
@@ -385,8 +447,10 @@ class _SignUpPage3State extends State<SignUpPage3> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.green, size: 16),
                 const SizedBox(width: 8),
-                const Text('Able to view Doctor Channel History',
-                    style: TextStyle(fontSize: 14, color: Colors.black87)),
+                const Expanded(
+                  child: Text('Able to view Doctor Channel History',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
+                ),
               ],
             ),
           ],
@@ -400,7 +464,7 @@ class _SignUpPage3State extends State<SignUpPage3> {
     return Card(
       key: const ValueKey('premiumCard'),
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -435,8 +499,10 @@ class _SignUpPage3State extends State<SignUpPage3> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.green, size: 16),
                 const SizedBox(width: 8),
-                const Text('All Free Member benefits',
-                    style: TextStyle(fontSize: 14, color: Colors.black87)),
+                const Expanded(
+                  child: Text('All Free Member benefits',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
+                ),
               ],
             ),
             const SizedBox(height: 4),
@@ -450,8 +516,10 @@ class _SignUpPage3State extends State<SignUpPage3> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.green, size: 16),
                 const SizedBox(width: 8),
-                const Text('Priority booking for Doctor Channels',
-                    style: TextStyle(fontSize: 14, color: Colors.black87)),
+                const Expanded(
+                  child: Text('Priority booking for Doctor Channels',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -459,8 +527,10 @@ class _SignUpPage3State extends State<SignUpPage3> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.green, size: 16),
                 const SizedBox(width: 8),
-                const Text('Exclusive discounts on services',
-                    style: TextStyle(fontSize: 14, color: Colors.black87)),
+                const Expanded(
+                  child: Text('Exclusive discounts on services',
+                      style: TextStyle(fontSize: 14, color: Colors.black87)),
+                ),
               ],
             ),
           ],
