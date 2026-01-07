@@ -12,66 +12,104 @@ class SignUpPage5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF93C5FD), Color(0xFFF9FAFB)],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 500),
+                margin: const EdgeInsets.only(top: 24),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 60),
-
-                    // Logo
+                    // Image
                     Center(
                       child: Image.asset(
                         'assets/images/logo.png',
-                        width: 80,
-                        height: 80,
+                        width: 200,
+                        height: 200,
+                        fit: BoxFit.contain,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 24),
 
-                    // Title
+                    // Sign Up Title
                     const Center(
                       child: Text(
-                        'Sign Up',
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                        'SIGN UP',
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
                       ),
                     ),
+
                     const SizedBox(height: 8),
 
+                    // Subtitle
                     const Center(
                       child: Text(
                         'Hello there! Let\'s create your account.',
-                        style: TextStyle(fontSize: 14, color: Colors.black54),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 32),
+
+                    const SizedBox(height: 24),
 
                     // Step Indicator - All completed
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _stepCheck(),
-                        _stepLine(),
-                        _stepCheck(),
-                        _stepLine(),
-                        _stepCheck(),
-                        _stepLine(),
-                        _stepCheck(),
-                        _stepLine(),
-                        _stepCheck(),
+                        _buildStepIndicator(1, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(2, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(3, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(4, true),
+                        _buildStepLine(),
+                        _buildStepIndicator(5, true),
                       ],
                     ),
+
                     const SizedBox(height: 32),
 
-                    const Text(
-                      'Summary',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    // Summary Section
+                    const Center(
+                      child: Text(
+                        'Summary',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black87,
+                        ),
+                      ),
                     ),
+
                     const SizedBox(height: 24),
 
                     // Membership Card
@@ -79,7 +117,8 @@ class SignUpPage5 extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: const Color(0xFFF5F7FA),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey.shade200, width: 1),
                       ),
                       child: Row(
                         children: [
@@ -93,36 +132,62 @@ class SignUpPage5 extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                formData.isPremium ? 'Premium Member' : 'Free Member',
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                formData.isPremium ? '500 LKR / Month' : '0 LKR\nLife time',
-                                style: const TextStyle(fontSize: 14, color: Colors.black54),
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  formData.isPremium ? 'Premium Member' : 'Free Member',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  formData.isPremium ? '500 LKR / Month' : '0 LKR Life time',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 32),
 
-                    // User Details
-                    _infoRow('Name', '${formData.title} ${formData.firstName} ${formData.lastName}'),
-                    const Divider(height: 32),
-                    _infoRow('NIC Number', formData.nicOrPassportNumber),
-                    const Divider(height: 32),
-                    _infoRow('Mobile Number', formData.mobile),
-                    const Divider(height: 32),
-                    _infoRow('Email', formData.email),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 24),
+
+                    // User Details Card
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade50,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.grey.shade200, width: 1),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _infoRow('Name', '${formData.title} ${formData.firstName} ${formData.lastName}'),
+                          const Divider(height: 24),
+                          _infoRow('NIC Number', formData.nicOrPassportNumber),
+                          const Divider(height: 24),
+                          _infoRow('Mobile Number', formData.mobile),
+                          const Divider(height: 24),
+                          _infoRow('Email', formData.email),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 24),
 
                     // Terms & Conditions
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Checkbox(
                           value: true,
@@ -130,99 +195,180 @@ class SignUpPage5 extends StatelessWidget {
                           activeColor: const Color(0xFF0000CC),
                         ),
                         Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              style: const TextStyle(fontSize: 14, color: Colors.black87),
-                              children: [
-                                const TextSpan(text: 'Click here to agree '),
-                                TextSpan(
-                                  text: 'eChanneling Terms and Conditions',
-                                  style: const TextStyle(color: Color(0xFF0000CC)),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(content: Text('Opening Terms & Conditions...')),
-                                      );
-                                    },
-                                ),
-                              ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: RichText(
+                              text: TextSpan(
+                                style: const TextStyle(fontSize: 14, color: Colors.black87),
+                                children: [
+                                  const TextSpan(text: 'Click here to agree '),
+                                  TextSpan(
+                                    text: 'eChanneling Terms and Conditions',
+                                    style: const TextStyle(
+                                      color: Color(0xFF0000CC),
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(content: Text('Opening Terms & Conditions...')),
+                                        );
+                                      },
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
+
                     const SizedBox(height: 32),
+
+                    // Buttons Row
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.black87,
+                              side: const BorderSide(color: Colors.grey, width: 2),
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: const Text(
+                              'Previous',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF3B82F6), Color(0xFF10B981)],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Navigate to Success Page
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SignUpPage6(isPremium: formData.isPremium),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                shadowColor: Colors.transparent,
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              child: const Text(
+                                'Next',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 24),
                   ],
                 ),
               ),
             ),
-
-            // Bottom Buttons
-            Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.black87,
-                        side: const BorderSide(color: Colors.grey),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        fixedSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Previous', style: TextStyle(fontSize: 16)),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigate to Success Page
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => SignUpPage6(isPremium: formData.isPremium),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0000CC),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                        fixedSize: const Size.fromHeight(50),
-                      ),
-                      child: const Text('Next', style: TextStyle(fontSize: 16, color: Colors.white)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _stepCheck() {
+  Widget _buildStepIndicator(int step, bool isActive) {
     return Container(
       width: 40,
       height: 40,
-      decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF0000CC)),
-      child: const Icon(Icons.check, color: Colors.white, size: 20),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: isActive ? const Color(0xFF0000CC) : Colors.white,
+        border: Border.all(
+          color: isActive ? const Color(0xFF0000CC) : Colors.grey,
+          width: 2,
+        ),
+      ),
+      child: Center(
+        child: isActive
+            ? const Icon(
+          Icons.check,
+          color: Colors.white,
+          size: 20,
+        )
+            : Text(
+          '$step',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+          ),
+        ),
+      ),
     );
   }
 
-  Widget _stepLine() {
-    return Container(width: 30, height: 2, color: Colors.grey.shade300);
+  Widget _buildStepLine() {
+    return Container(
+      width: 30,
+      height: 2,
+      color: Colors.grey.shade300,
+    );
   }
 
   Widget _infoRow(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 12, color: Colors.black54)),
-        const SizedBox(height: 4),
-        Text(value, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: Colors.black87,
+          ),
+        ),
       ],
     );
   }
