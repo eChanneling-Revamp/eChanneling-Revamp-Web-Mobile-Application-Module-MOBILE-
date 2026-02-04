@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../sign_up_page_2.dart';
+import 'sign_up_page_2.dart';
 import 'sign_up_page_4.dart';
 
 class SignUpPage3 extends StatefulWidget {

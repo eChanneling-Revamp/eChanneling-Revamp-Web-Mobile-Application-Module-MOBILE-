@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'signup/sign_up_page_1.dart';
-import 'signup/sign_up_page_3.dart';
+import 'sign_up_page_1.dart';
+import 'sign_up_page_3.dart';
 
 class SignUpPage2 extends StatefulWidget {
   const SignUpPage2({Key? key}) : super(key: key);
