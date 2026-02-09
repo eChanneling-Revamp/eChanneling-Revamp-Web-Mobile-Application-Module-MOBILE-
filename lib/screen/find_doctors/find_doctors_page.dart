@@ -245,29 +245,29 @@ class _FindDoctorsPageState extends State<FindDoctorsPage> {
       ),
 
       // Bottom Navigation Bar (matching web app structure)
-      bottomNavigationBar: BottomAppBar(
-        elevation: 8,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _navItem(Icons.home, 'Home', 0, () {
-                Navigator.pushNamed(context, '/home');
-              }),
-              _navItem(Icons.search, 'Find Doctors', 1, () {
-                setState(() => _selectedIndex = 1);
-              }),
-              _navItem(Icons.calendar_today, 'Appointments', 2, () {
-                Navigator.pushNamed(context, '/appointments');
-              }),
-              _navItem(Icons.person_outline, 'Profile', 3, () {
-                Navigator.pushNamed(context, '/profile');
-              }),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   elevation: 8,
+      //   child: SizedBox(
+      //     height: 60,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         _navItem(Icons.home, 'Home', 0, () {
+      //           Navigator.pushNamed(context, '/home');
+      //         }),
+      //         _navItem(Icons.search, 'Find Doctors', 1, () {
+      //           setState(() => _selectedIndex = 1);
+      //         }),
+      //         _navItem(Icons.calendar_today, 'Appointments', 2, () {
+      //           Navigator.pushNamed(context, '/appointments');
+      //         }),
+      //         _navItem(Icons.person_outline, 'Profile', 3, () {
+      //           Navigator.pushNamed(context, '/profile');
+      //         }),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 

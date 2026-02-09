@@ -1,5 +1,8 @@
-// lib/screen/home/home_page.dart
 import 'package:flutter/material.dart';
+import 'package:eChanneling/screen/Appointments/my_appointments_page.dart';
+import 'package:eChanneling/screen/find_doctors/find_doctors_page.dart';
+import 'package:eChanneling/screen/home/home_page.dart';
+import 'package:eChanneling/screen/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   final String userName;
@@ -14,6 +17,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
+  final List pages = [
+    HomePage(userName: "Saythu", isPremium: true),
+    FindDoctorsPage,
+    MyAppointmentsPage,
+    ProfilePage
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -61,27 +71,27 @@ class _HomePageState extends State<HomePage> {
       ),
 
       // Bottom Navigation Bar
-      bottomNavigationBar: BottomAppBar(
-        elevation: 8,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _navItem(Icons.home, 'Home', 0, () {}),
-              _navItem(Icons.search, 'Find Doctors', 1, () {
-                Navigator.pushNamed(context, '/find_doctors');
-              }),
-              _navItem(Icons.calendar_today, 'Appointments', 2, () {
-                Navigator.pushNamed(context, '/appointments');
-              }),
-              _navItem(Icons.person_outline, 'Profile', 3, () {
-                Navigator.pushNamed(context, '/profile');
-              }),
-            ],
-          ),
-        ),
-      ),
+      // bottomNavigationBar: BottomAppBar(
+      //   elevation: 8,
+      //   child: SizedBox(
+      //     height: 60,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         _navItem(Icons.home, 'Home', 0, () {}),
+      //         _navItem(Icons.search, 'Find Doctors', 1, () {
+      //           Navigator.pushNamed(context, '/find_doctors');
+      //         }),
+      //         _navItem(Icons.calendar_today, 'Appointments', 2, () {
+      //           Navigator.pushNamed(context, '/appointments');
+      //         }),
+      //         _navItem(Icons.person_outline, 'Profile', 3, () {
+      //           Navigator.pushNamed(context, '/profile');
+      //         }),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 
@@ -754,3 +764,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+

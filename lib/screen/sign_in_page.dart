@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'bottomNavBar.dart';
 import 'signup/sign_up_page_1.dart';
 import 'forgot password/forget_password_page.dart';
 import 'home/home_page.dart';
@@ -321,7 +322,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: ElevatedButton(
                           onPressed:() async{
                             if(_formkey.currentState!.validate()){
-                              await Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>HomePage(userName: 'saythu', isPremium: true)));
+                              await Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>HomeApp()));
                               // ScaffoldMessenger.of(context).showSnackBar(
                               //   SnackBar(
                               //     content:Text("Success"),
