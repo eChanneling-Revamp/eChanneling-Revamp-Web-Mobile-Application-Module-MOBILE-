@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../sign_in_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -8,6 +7,8 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
+String prof = "My Profile";
+
 class _ProfilePageState extends State<ProfilePage> {
   int _selectedIndex = 3; // Profile is selected
 
@@ -15,55 +16,57 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'Profile',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined, color: Colors.black87),
-            onPressed: () {},
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:10),
-            child: SizedBox(
-              width:MediaQuery.of(context).size.width * 0.25,
-              height:MediaQuery.of(context).size.height * 0.05,
-              child:ElevatedButton(
-                onPressed:(){
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>SignInPage()));
-                },
-                style:ElevatedButton.styleFrom(
-                  foregroundColor:Colors.black,
-                  backgroundColor:Colors.transparent,
-                  shadowColor:Colors.transparent
-                ),
-                child:Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Logout",
-                      style:TextStyle(
-                        fontSize:11
-                      )
-                    ),
-                    Icon(
-                      Icons.login_outlined,
-                      size:15
-                    )
-                  ],
-                )
-              )
-            ),
-          )
-        ],
-      ),
+
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   title: const Text(
+      //     'Profile',
+      //     style: TextStyle(
+      //       color: Colors.black87,
+      //       fontSize: 20,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.notifications_outlined, color: Colors.black87),
+      //       onPressed: () {},
+      //     ),
+      //     Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal:10),
+      //       child: SizedBox(
+      //         width:MediaQuery.of(context).size.width * 0.25,
+      //         height:MediaQuery.of(context).size.height * 0.05,
+      //         child:ElevatedButton(
+      //           onPressed:(){
+      //             Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>SignInPage()));
+      //           },
+      //           style:ElevatedButton.styleFrom(
+      //             foregroundColor:Colors.black,
+      //             backgroundColor:Colors.transparent,
+      //             shadowColor:Colors.transparent
+      //           ),
+      //           child:Row(
+      //             mainAxisAlignment:MainAxisAlignment.spaceBetween,
+      //             children: [
+      //               Text("Logout",
+      //                 style:TextStyle(
+      //                   fontSize:11
+      //                 )
+      //               ),
+      //               Icon(
+      //                 Icons.login_outlined,
+      //                 size:15
+      //               )
+      //             ],
+      //           )
+      //         )
+      //       ),
+      //     )
+      //   ],
+      // ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

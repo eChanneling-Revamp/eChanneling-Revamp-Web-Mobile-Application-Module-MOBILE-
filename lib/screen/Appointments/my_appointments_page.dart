@@ -7,6 +7,8 @@ class MyAppointmentsPage extends StatefulWidget {
   State<MyAppointmentsPage> createState() => _MyAppointmentsPageState();
 }
 
+String appointment = "Appointments";
+
 class _MyAppointmentsPageState extends State<MyAppointmentsPage> {
   int _selectedIndex = 2; // Appointments tab is selected
   String _activeTab = 'upcoming'; // 'upcoming', 'past', 'cancelled'
@@ -15,24 +17,26 @@ class _MyAppointmentsPageState extends State<MyAppointmentsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'Appointments',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined, color: Colors.black87),
-            onPressed: () {},
-          ),
-        ],
-      ),
+
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   title: const Text(
+      //     'Appointments',
+      //     style: TextStyle(
+      //       color: Colors.black87,
+      //       fontSize: 20,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.notifications_outlined, color: Colors.black87),
+      //       onPressed: () {},
+      //     ),
+      //   ],
+      // ),
+
       body: Column(
         children: [
           const SizedBox(height: 16),

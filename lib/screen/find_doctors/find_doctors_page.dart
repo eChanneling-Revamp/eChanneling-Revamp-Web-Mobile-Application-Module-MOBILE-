@@ -1,4 +1,3 @@
-// lib/screen/find_doctors/find_doctors_page.dart
 import 'package:flutter/material.dart';
 
 class FindDoctorsPage extends StatefulWidget {
@@ -7,6 +6,8 @@ class FindDoctorsPage extends StatefulWidget {
   @override
   State<FindDoctorsPage> createState() => _FindDoctorsPageState();
 }
+
+String findDoc = "Find Doctors";
 
 class _FindDoctorsPageState extends State<FindDoctorsPage> {
   int _selectedIndex = 1; // Default to Find Doctors tab
@@ -77,24 +78,26 @@ class _FindDoctorsPageState extends State<FindDoctorsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'Find Doctors',
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_list, color: Colors.black87),
-            onPressed: () {},
-          ),
-        ],
-      ),
+
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   title: const Text(
+      //     'Find Doctors',
+      //     style: TextStyle(
+      //       color: Colors.black87,
+      //       fontSize: 20,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.filter_list, color: Colors.black87),
+      //       onPressed: () {},
+      //     ),
+      //   ],
+      // ),
+
       body: Column(
         children: [
           // Search Section
